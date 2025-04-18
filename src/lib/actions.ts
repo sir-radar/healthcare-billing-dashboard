@@ -23,7 +23,7 @@ export async function fetchClaims() {
 
 export async function forecastRevenue(params: SimulationParams) {
   // Simulate network delay for realistic behavior
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  await new Promise((resolve) => setTimeout(resolve, 500));
 
   // Simulate a Monte Carlo simulation for revenue forecasting
   const iterations = 3200;
@@ -65,7 +65,7 @@ export async function forecastRevenue(params: SimulationParams) {
   const maxRevenue = Math.max(...results);
 
   const ranges = [
-    { min: 0, max: 4000 },
+    { min: 1, max: 4000 },
     { min: 4000, max: 8000 },
     { min: 8000, max: 12000 },
     { min: 12000, max: 16000 },
