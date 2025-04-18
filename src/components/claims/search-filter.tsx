@@ -14,12 +14,14 @@ import { Search } from 'lucide-react';
 interface SearchFilterProps {
   onSearchTermChange: (value: string) => void;
   onStatusFilterChange: (value: ClaimStatusType | 'all') => void;
+  onDateSortChange: (value: string) => void;
   disabled?: boolean;
 }
 
 export function SearchFilter({
   onSearchTermChange,
   onStatusFilterChange,
+  onDateSortChange,
   disabled = false,
 }: SearchFilterProps) {
   return (
@@ -54,15 +56,17 @@ export function SearchFilter({
         </SelectContent>
       </Select>
 
-      <Select defaultValue="date-desc" disabled={disabled}>
+      <Select
+        onValueChange={(value) => onDateSortChange(value)}
+        defaultValue="desc"
+        disabled={disabled}
+      >
         <SelectTrigger className="w-full md:w-[180px]">
           <SelectValue placeholder="Sort by" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="date-desc">Date (Newest)</SelectItem>
-          <SelectItem value="date-asc">Date (Oldest)</SelectItem>
-          <SelectItem value="amount-desc">Amount (High to Low)</SelectItem>
-          <SelectItem value="amount-asc">Amount (Low to High)</SelectItem>
+          <SelectItem value="desc">Date (Newest)</SelectItem>
+          <SelectItem value="asc">Date (Oldest)</SelectItem>
         </SelectContent>
       </Select>
     </div>

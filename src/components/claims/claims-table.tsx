@@ -45,6 +45,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
   const [sortField, setSortField] = useState<SortField>('claim_date');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
   const [currentPage, setCurrentPage] = useState(1);
+  const [dateSort, setDateSort] = useState('desc');
   const itemsPerPage = 5;
 
   const handleSort = (field: SortField) => {
@@ -76,6 +77,14 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
       result = result.filter((claim) => claim.payment_status === statusFilter);
     }
 
+    if (dateSort) {
+      return result.sort((a, b) => {
+        const aDate = new Date(a.claim_date).getTime();
+        const bDate = new Date(b.claim_date).getTime();
+        return dateSort === 'asc' ? aDate - bDate : bDate - aDate;
+      });
+    }
+
     // Finally sort
     return result.sort((a, b) => {
       const aValue = a[sortField];
@@ -105,7 +114,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
 
       return 0;
     });
-  }, [claims, searchTerm, statusFilter, sortField, sortDirection]);
+  }, [claims, searchTerm, statusFilter, sortField, dateSort, sortDirection]);
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredAndSortedClaims.length / itemsPerPage);
@@ -120,6 +129,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
       <SearchFilter
         onSearchTermChange={setSearchTerm}
         onStatusFilterChange={setStatusFilter}
+        onDateSortChange={setDateSort}
       />
 
       <div className="rounded-md border">
@@ -130,7 +140,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                 <Button
                   variant="ghost"
                   onClick={() => handleSort('patient_name')}
-                  className="flex items-center gap-1 font-medium"
+                  className="p-0 flex items-center gap-1 font-medium"
                 >
                   Patient
                   <ArrowUpDown size={16} />
@@ -211,7 +221,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                   <TableCell className="pl-9 text-neutral-500">
                     {claim.billing_code}
                   </TableCell>
-                  <TableCell className="pl-[17px] font-medium">
+                  <TableCell className="pl-[22px] font-medium">
                     {formatCurrency(
                       parseFloat(claim.amount as unknown as string)
                     )}
