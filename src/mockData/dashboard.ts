@@ -22,9 +22,13 @@ export const createDashboardSummary = (): DashboardSummary => {
   const deniedAmount = denied.reduce((sum, { amount }) => sum + amount, 0);
 
   const claimsDistribution = [
-    { name: ClaimStatus.Approved, value: approved.length },
-    { name: ClaimStatus.Pending, value: pending.length },
-    { name: ClaimStatus.Denied, value: denied.length },
+    {
+      name: ClaimStatus.Approved,
+      value: approved.length,
+      total: approvedAmount,
+    },
+    { name: ClaimStatus.Pending, value: pending.length, total: pendingAmount },
+    { name: ClaimStatus.Denied, value: denied.length, total: deniedAmount },
   ];
 
   return {

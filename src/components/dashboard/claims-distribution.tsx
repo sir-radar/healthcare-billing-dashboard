@@ -1,6 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { formatCurrency } from '@/lib/utils';
 import {
   PieChart,
   Pie,
@@ -11,7 +12,7 @@ import {
 } from 'recharts';
 
 interface ClaimsDistributionProps {
-  data: { name: string; value: number }[];
+  data: { name: string; value: number; total: number }[];
 }
 
 const COLORS = ['#10b981', '#f59e0b', '#ef4444'];
@@ -34,7 +35,11 @@ export default function ClaimsDistribution({ data }: ClaimsDistributionProps) {
               fill="#8884d8"
               paddingAngle={5}
               dataKey="value"
-              label={(entry) => `${entry.name} ${entry.percent}%`}
+              label={(entry) =>
+                `${entry.name} - ${entry.percent.toFixed(
+                  2
+                )}%  - ${formatCurrency(entry.total)}`
+              }
             >
               {data.map((entry, index) => (
                 <Cell
@@ -43,7 +48,15 @@ export default function ClaimsDistribution({ data }: ClaimsDistributionProps) {
                 />
               ))}
             </Pie>
-            <Tooltip />
+            <Tooltip
+              formatter={(value, name, props) => {
+                const { payload } = props;
+                return [
+                  `Total: ${formatCurrency(payload.total)} | ${name}: ${value}`,
+                  'Details',
+                ];
+              }}
+            />
             <Legend />
           </PieChart>
         </ResponsiveContainer>
