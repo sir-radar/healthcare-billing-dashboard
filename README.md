@@ -2,6 +2,9 @@
 
 A comprehensive healthcare billing dashboard with revenue forecasting, claims management, and payment probability simulations. This project is built using **Next.js**
 
+## Demo
+[Demo Link](https://healthcare-dashboard-pl44.onrender.com/)
+
 ## Features
 
 - **Dashboard Overview**: Displays key metrics and summaries.
