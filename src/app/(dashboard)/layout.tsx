@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner';
 import { Header } from '@/components/layout/header';
 import { Navigation } from '@/components/layout/navigation';
 import { Footer } from '@/components/layout/footer';
@@ -17,6 +18,7 @@ export default function DashboardLayout({
           </div>
           <Navigation />
         </aside>
+        <Toaster />
         <main className="flex-1 bg-neutral-50">
           <div className="container mx-auto p-4 md:p-6">{children}</div>
         </main>
