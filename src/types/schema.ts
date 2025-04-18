@@ -34,6 +34,7 @@ export const dashboardSummarySchema = z.object({
     z.object({
       name: z.string(),
       value: z.number(),
+      total: z.number(),
     })
   ),
 });
