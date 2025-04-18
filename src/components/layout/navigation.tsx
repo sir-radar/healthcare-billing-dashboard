@@ -28,7 +28,7 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="flex md:flex-col gap-1 md:gap-2 px-2">
+    <nav className="flex md:flex-col gap-1 md:gap-2 px-2 sm:justify-center">
       {navItems.map((item) => {
         const isActive = pathname === item.href;
 
