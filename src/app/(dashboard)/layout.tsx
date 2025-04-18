@@ -12,7 +12,7 @@ export default function DashboardLayout({
       <Header />
       <div className="flex flex-1 flex-col md:flex-row">
         <aside className="border-r bg-white md:w-64">
-          <div className="flex h-16 items-center border-b px-4 md:h-[65px]">
+          <div className="flex h-16 items-center border-b px-4 md:h-[65px] mb-1">
             <h2 className="font-semibold">Navigation</h2>
           </div>
           <Navigation />
