@@ -219,7 +219,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                   <TableCell className="pl-[26px] text-neutral-500">
                     {claim.insurance_provider}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="pl-[15px]">
                     <StatusBadge
                       status={claim.payment_status as ClaimStatusType}
                     />
@@ -231,7 +231,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                       day: 'numeric',
                     })}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="pl-[25px]">
                     <Button variant="link" className="text-primary p-0">
                       View
                     </Button>
