@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, CardContent } from '@/components/ui/card';
 import { DashboardSummary } from '@/types/schema';
 import { formatCurrency } from '@/lib/utils';

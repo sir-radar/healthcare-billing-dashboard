@@ -78,6 +78,7 @@ export function SimulationResults({ forecastRevenue }: Props) {
   // Run the simulation on first load
   useEffect(() => {
     runSimulation(params);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderLoadingState = () => (
