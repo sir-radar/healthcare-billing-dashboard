@@ -22,9 +22,6 @@ export async function fetchClaims() {
 }
 
 export async function forecastRevenue(params: SimulationParams) {
-  // Simulate network delay for realistic behavior
-  await new Promise((resolve) => setTimeout(resolve, 500));
-
   // Simulate a Monte Carlo simulation for revenue forecasting
   const iterations = 3200;
   const pendingProbability = params.pendingProbability / 100;
