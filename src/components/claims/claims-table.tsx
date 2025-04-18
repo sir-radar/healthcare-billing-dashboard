@@ -126,7 +126,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>
+              <TableHead className="text-left">
                 <Button
                   variant="ghost"
                   onClick={() => handleSort('patient_name')}
@@ -136,7 +136,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                   <ArrowUpDown size={16} />
                 </Button>
               </TableHead>
-              <TableHead>
+              <TableHead className="text-left">
                 <Button
                   variant="ghost"
                   onClick={() => handleSort('billing_code')}
@@ -146,7 +146,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                   <ArrowUpDown size={16} />
                 </Button>
               </TableHead>
-              <TableHead>
+              <TableHead className="text-right">
                 <Button
                   variant="ghost"
                   onClick={() => handleSort('amount')}
@@ -156,7 +156,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                   <ArrowUpDown size={16} />
                 </Button>
               </TableHead>
-              <TableHead>
+              <TableHead className="text-left">
                 <Button
                   variant="ghost"
                   onClick={() => handleSort('insurance_provider')}
@@ -166,7 +166,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                   <ArrowUpDown size={16} />
                 </Button>
               </TableHead>
-              <TableHead>
+              <TableHead className="text-center">
                 <Button
                   variant="ghost"
                   onClick={() => handleSort('payment_status')}
@@ -176,7 +176,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                   <ArrowUpDown size={16} />
                 </Button>
               </TableHead>
-              <TableHead>
+              <TableHead className="text-right">
                 <Button
                   variant="ghost"
                   onClick={() => handleSort('claim_date')}
@@ -186,7 +186,7 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                   <ArrowUpDown size={16} />
                 </Button>
               </TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead className="text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -208,15 +208,15 @@ export function ClaimsTable({ claims }: ClaimsTableProps) {
                       {claim.patient_id}
                     </div>
                   </TableCell>
-                  <TableCell className="text-neutral-500">
+                  <TableCell className="pl-9 text-neutral-500">
                     {claim.billing_code}
                   </TableCell>
-                  <TableCell className="font-medium">
+                  <TableCell className="pl-[17px] font-medium">
                     {formatCurrency(
                       parseFloat(claim.amount as unknown as string)
                     )}
                   </TableCell>
-                  <TableCell className="text-neutral-500">
+                  <TableCell className="pl-[26px] text-neutral-500">
                     {claim.insurance_provider}
                   </TableCell>
                   <TableCell>
