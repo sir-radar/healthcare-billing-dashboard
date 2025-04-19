@@ -44,7 +44,7 @@ self.onmessage = (event) => {
   const maxRevenue = Math.max(...results);
 
   const ranges = [
-    { min: 0, max: 4000 },
+    { min: 1, max: 4000 },
     { min: 4000, max: 8000 },
     { min: 8000, max: 12000 },
     { min: 12000, max: 16000 },
