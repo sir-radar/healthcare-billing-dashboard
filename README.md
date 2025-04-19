@@ -86,6 +86,7 @@ src/
 │   ├── ui/                   # UI components (Buttons, etc.)
 ├── lib/                      # Utility functions
 ├── types/                    # TypeScript types and interfaces
+├── workers/                  # Web workers
 
 ```
 
