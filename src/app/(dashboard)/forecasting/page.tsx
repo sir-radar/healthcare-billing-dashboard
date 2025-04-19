@@ -1,7 +1,6 @@
 import { SimulationResults } from '@/components/forecasting/simulation-results';
-import { forecastRevenue } from '@/lib/actions';
 
-export default async function Forecasting() {
+export default function Forecasting() {
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50">
       <div className="flex-1">
@@ -11,7 +10,7 @@ export default async function Forecasting() {
               Revenue Forecasting
             </h2>
 
-            <SimulationResults forecastRevenue={forecastRevenue} />
+            <SimulationResults />
           </div>
         </div>
       </div>

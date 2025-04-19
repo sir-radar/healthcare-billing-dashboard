@@ -20,12 +20,9 @@ import {
 } from 'recharts';
 import { debounce } from 'lodash';
 import { RenderResults } from './render-result';
+import { forecastRevenueWorker } from '@/lib/workers';
 
-type Props = {
-  forecastRevenue: (value: SimulationParams) => Promise<SimulationResult>;
-};
-
-export function SimulationResults({ forecastRevenue }: Props) {
+export function SimulationResults() {
   const [params, setParams] = useState<SimulationParams>({
     pendingProbability: 90,
     approvedProbability: 60,
@@ -35,30 +32,25 @@ export function SimulationResults({ forecastRevenue }: Props) {
   const [results, setResults] = useState<SimulationResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const runSimulation = useCallback(
-    async (updatedParams: SimulationParams) => {
-      setIsLoading(true);
-      try {
-        const data = await forecastRevenue(updatedParams);
-        toast.success('Simulation Complete', {
-          description: 'You can view your results below.',
-          duration: 3000,
-        });
-        setResults(data);
-      } catch (error) {
-        toast.error('Simulation Failed', {
-          description:
-            error instanceof Error
-              ? error.message
-              : 'An unknown error occurred',
-          duration: 3000,
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [forecastRevenue]
-  );
+  const runSimulation = useCallback(async (updatedParams: SimulationParams) => {
+    setIsLoading(true);
+    try {
+      const data = await forecastRevenueWorker(updatedParams);
+      toast.success('Simulation Complete', {
+        description: 'You can view your results below.',
+        duration: 3000,
+      });
+      setResults(data);
+    } catch (error) {
+      toast.error('Simulation Failed', {
+        description:
+          error instanceof Error ? error.message : 'An unknown error occurred',
+        duration: 3000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   // Debounced version of runSimulation
   const debouncedRunSimulation = useMemo(
